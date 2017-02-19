@@ -3,23 +3,29 @@ import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 
 class SignUp extends Component {
+    handleFormSubmit({ email, password }) {
+        this.props.signupUser(email, password);
+    }
+
     renderErrorMessage(subject) {
         return subject.touched && subject.error && <div className="error">{subject.error}</div>;
     }
 
-    renderContent(subject) {
-        return (
-            <fieldset className="form-group">
-                <label>{`${subject}:`}</label>
-                <input {...subject} className="form-control" />
-                {this.renderErrorMessage(subject)}
-            </fieldset>
-        );
+    renderAlert() {
+        console.log(this.props);
+        if(this.props.errorMessage) {
+            return (
+                <div className="alert alert-danger">
+                    <strong>{'Oops! '}</strong>{this.props.errorMessage}
+                </div>
+            );
+        }
     }
+
     render() {
         const { handleSubmit, fields: { email, password, passwordConfirm }} = this.props;
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <fieldset className="form-group">
                     <label>{'Email:'}</label>
                     <input {...email} className="form-control" />
@@ -35,6 +41,7 @@ class SignUp extends Component {
                     <input {...passwordConfirm} type="password" className="form-control" />
                     {this.renderErrorMessage(passwordConfirm)}
                 </fieldset>
+                {this.renderAlert()}
                 <button action="submit" className="btn btn-primary">
                     {'Sign in'}
                 </button>
@@ -66,8 +73,12 @@ function validate(formProps) {
     return errors;
 }
 
+function mapStateToProps(state) {
+    return { errorMessage: state.auth.error };
+}
+
 export default reduxForm({
     form: 'signup',
     fields: ['email', 'password', 'passwordConfirm'],
     validate
-})(SignUp);
+}, mapStateToProps, actions)(SignUp);

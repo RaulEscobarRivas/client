@@ -15,6 +15,9 @@ class Header extends Component {
                 </li>,
                 <li className="nav-item" key={2}>
                     <Link className="nav-link" to="/signup">{'Registrarse'}</Link>
+                </li>,
+                <li className="nav-item" key={3}>
+                    <Link className="nav-link" to="/feature">{'Armá tu equipo'}</Link>
                 </li>
             ];
         }

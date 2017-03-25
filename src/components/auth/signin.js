@@ -18,21 +18,28 @@ class Signin extends Component {
         }
     }
 
+    checkInput(email, password) {
+        if (!email.dirty || !password.dirty) {
+            return true;
+        }
+        return false;
+    }
+
     render() {
         const { handleSubmit, fields: { email, password }} = this.props;
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <fieldset className="form-group">
-                    <label>{'Email:'}</label>
+                    <label>{'Correo electrónico:'}</label>
                     <input {...email} className="form-control" />
                 </fieldset>
                 <fieldset className="form-group">
-                    <label>{'Password:'}</label>
+                    <label>{'Contraseña:'}</label>
                     <input {...password} type="password" className="form-control" />
                 </fieldset>
                 {this.renderAlert()}
-                <button action="submit" className="btn btn-primary">
-                    {'Sign in'}
+                <button action="submit" className="btn btn-primary" disabled={this.checkInput(email, password)}>
+                    {'Ingresar'}
                 </button>
             </form>
         );

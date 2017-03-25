@@ -12,7 +12,6 @@ class SignUp extends Component {
     }
 
     renderAlert() {
-        console.log(this.props);
         if(this.props.errorMessage) {
             return (
                 <div className="alert alert-danger">
@@ -22,28 +21,35 @@ class SignUp extends Component {
         }
     }
 
+    checkInput(email, password, passwordConfirm) {
+        if (!email.dirty || !password.dirty || !passwordConfirm.dirty) {
+            return true;
+        }
+        return false;
+    }
+
     render() {
         const { handleSubmit, fields: { email, password, passwordConfirm }} = this.props;
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <fieldset className="form-group">
-                    <label>{'Email:'}</label>
+                    <label>{'Correo electrónico:'}</label>
                     <input {...email} className="form-control" />
                     {this.renderErrorMessage(email)}
                 </fieldset>
                 <fieldset className="form-group">
-                    <label>{'Password:'}</label>
+                    <label>{'Contraseña:'}</label>
                     <input {...password} type="password" className="form-control" />
                     {this.renderErrorMessage(password)}
                 </fieldset>
                 <fieldset className="form-group">
-                    <label>{'Confirm Password:'}</label>
+                    <label>{'Confirmá tu contraseña:'}</label>
                     <input {...passwordConfirm} type="password" className="form-control" />
                     {this.renderErrorMessage(passwordConfirm)}
                 </fieldset>
                 {this.renderAlert()}
-                <button action="submit" className="btn btn-primary">
-                    {'Sign in'}
+                <button action="submit" className="btn btn-primary" disabled={this.checkInput(email, password, passwordConfirm)}>
+                    {'Ingresar'}
                 </button>
             </form>
         );
@@ -54,20 +60,20 @@ function validate(formProps) {
     const errors = {};
 
     if (!formProps.email) {
-        errors.email = 'Please enter an email';
+        errors.email = 'Ingresá un correo electrónico';
     }
 
     if (!formProps.password) {
-        errors.password = 'Please enter a password';
+        errors.password = 'Ingresá una contraseña';
     }
 
 
     if (!formProps.passwordConfirm) {
-        errors.passwordConfirm = 'Please enter a password confirmation';
+        errors.passwordConfirm = 'Confirmá tu contraseña';
     }
 
     if (formProps.password !== formProps.passwordConfirm) {
-        errors.passwordConfirm = 'Passwords must match';
+        errors.passwordConfirm = 'Contraseñas deben coincidir';
     }
 
     return errors;

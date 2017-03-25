@@ -1,3 +1,9 @@
 .error {
     color: red;
 }
+
+.feature-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

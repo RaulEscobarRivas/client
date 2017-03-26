@@ -8,3 +8,9 @@
     justify-content: space-around;
     text-transform: uppercase;
 }
+
+.player-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

@@ -17,7 +17,7 @@ class Arquero extends Component {
             case validOptions[3]:
                 return console.log(option);
             default:
-                return console.log('Wrong option.');
+                return;
         }
     }
 

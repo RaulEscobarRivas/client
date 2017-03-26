@@ -4,7 +4,8 @@ import {
     AUTH_USER,
     UNAUTH_USER,
     AUTH_ERROR,
-    FETCH_MESSAGE
+    FETCH_MESSAGE,
+    POSITION_SELECTED
 } from './types';
 
 const API_URL = 'http://localhost:3090';
@@ -67,5 +68,12 @@ export function fetchMessage() {
                     payload: response.data.message
                 })
             });
+    }
+}
+
+export function positionSelected(position) {
+    return {
+        type: POSITION_SELECTED,
+        position
     }
 }

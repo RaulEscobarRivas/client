@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import PlayerSelection from '../player-selection';
 
 class Feature extends Component {
     componentWillMount() {
         this.props.fetchMessage();
     }
 
-    renderLinks() {
-        return [
-                <li className="nav-item" key={1}>
-                    <div>{'Arquero'}</div>
-                </li>,
-                <li className="nav-item" key={2}>
-                    <div>{'Defensa'}</div>
-                </li>,
-                <li className="nav-item" key={3}>
-                    <div>{'Medio campo'}</div>
-                </li>,
-                <li className="nav-item" key={4}>
-                    <div>{'Delantera'}</div>
-                </li>
-            ];
+    handleSelect(e) {
+        this.props.positionSelected(e.currentTarget.dataset.subject)
+    }
+
+    renderLinks(subjects) {
+        return subjects.map( (subject, index) => (
+            <li className="nav-item" key={index} data-subject={subject} onClick={this.handleSelect.bind(this)}>
+                <div>{subject}</div>
+            </li>
+        ));
     }
 
     render () {
@@ -29,14 +25,20 @@ class Feature extends Component {
             <div>
                 {this.props.message}
                 <ul className="nav navbar-nav feature-list">
-                    {this.renderLinks()}
+                    {this.renderLinks(['arquero', 'defensa', 'medio campo', 'delantera'])}
                 </ul>
+                <div className="player-selection">
+                    <PlayerSelection />
+                </div>
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return { message: state.auth.message };
+    return {
+        message: state.auth.message,
+        position: state.position
+    };
 }
 export default connect(mapStateToProps, actions)(Feature);

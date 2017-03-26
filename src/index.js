@@ -16,8 +16,8 @@ import RequireAuth from './components/auth/require_auth';
 import Welcome from './components/welcome';
 import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store= createStoreWithMiddleware(reducers);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk, createLogger())(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 const token = localStorage.getItem('token');
 

@@ -10,13 +10,11 @@ class Arquero extends Component {
 
         switch(option) {
             case validOptions[0]:
-                return console.log(option);
             case validOptions[1]:
-                return console.log(option);
             case validOptions[2]:
-                return console.log(option);
             case validOptions[3]:
-                return console.log(option);
+                this.props.arqueroSelected(this.props.selectedPosition, 0, option);
+                return;
             default:
                 return;
         }

@@ -6,7 +6,7 @@ import {
     AUTH_ERROR,
     FETCH_MESSAGE,
     POSITION_SELECTED,
-    PLAYER_SELECTED
+    ARQUERO_SELECTED
 } from './types';
 
 const API_URL = 'http://localhost:3090';
@@ -79,9 +79,9 @@ export function positionSelected(position) {
     }
 }
 
-export function playerSelected(position, positionNumber, player) {
+export function arqueroSelected(position, positionNumber, player) {
     return {
-        type: PLAYER_SELECTED,
+        type: ARQUERO_SELECTED,
         position,
         positionNumber,
         player

@@ -4,7 +4,21 @@ import * as actions from '../../actions';
 
 class Arquero extends Component {
     handleSelect(e) {
-        console.log(e.currentTarget.dataset.option);
+        const validOptions = this.props.options;
+        const option = e.currentTarget.dataset.option;
+
+        switch(option) {
+            case validOptions[0]:
+                return console.log(option);
+            case validOptions[1]:
+                return console.log(option);
+            case validOptions[2]:
+                return console.log(option);
+            case validOptions[3]:
+                return console.log(option);
+            default:
+                return console.log('Wrong option.');
+        }
     }
 
     renderOptions(options) {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import PlayerSelection from '../player-selection';
+import PlayerSelection from '../player_selection';
+import position from '../../enum/position_enum';
 
 class Feature extends Component {
     componentWillMount() {
@@ -14,8 +15,8 @@ class Feature extends Component {
 
     renderLinks(subjects) {
         return subjects.map( (subject, index) => (
-            <li className="nav-item" key={index} data-subject={subject} onClick={this.handleSelect.bind(this)}>
-                <div>{subject}</div>
+            <li className="nav-item" key={index} data-subject={position[subject]} onClick={this.handleSelect.bind(this)}>
+                <div>{position[subject]}</div>
             </li>
         ));
     }
@@ -25,7 +26,7 @@ class Feature extends Component {
             <div>
                 {this.props.message}
                 <ul className="nav navbar-nav feature-list">
-                    {this.renderLinks(['arquero', 'defensa', 'medio campo', 'delantera'])}
+                    {this.renderLinks(Object.keys(position))}
                 </ul>
                 <div className="player-selection">
                     <PlayerSelection />

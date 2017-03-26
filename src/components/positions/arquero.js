@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import * as selectors from '../../reducers';
 
 class Arquero extends Component {
     handleSelect(e) {
@@ -41,6 +42,7 @@ class Arquero extends Component {
 
 function mapStateToProps(state) {
     return {
+        selectedPosition: selectors.getSelectedPosition(state),
         options: ['Jugador 1', 'Jugador 2', 'Jugador 3', 'Jugador 4']
     };
 }

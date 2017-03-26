@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import auth from './auth_reducer';
-import team from './team_reducer';
+import team from './team_reducers';
 
 const rootReducer = combineReducers({
     form,

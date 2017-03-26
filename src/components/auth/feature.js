@@ -37,8 +37,7 @@ class Feature extends Component {
 
 function mapStateToProps(state) {
     return {
-        message: state.auth.message,
-        position: state.position
+        message: state.auth.message
     };
 }
 export default connect(mapStateToProps, actions)(Feature);

@@ -6,7 +6,7 @@ import position from './position_reducer';
 const rootReducer = combineReducers({
     form,
     auth,
-    position
+    team: position
 });
 
 export default rootReducer;

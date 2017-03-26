@@ -2,13 +2,13 @@ import {
     POSITION_SELECTED
 } from '../actions/types';
 
-export default function(position = '', action) {
+export default function(state = {}, action) {
     switch(action.type) {
         case POSITION_SELECTED:
-            return action.position;
+            return {...state, selectedPosition: action.position};
         default:
-            return position;
+            return {...state, selectedPosition: ''};
     }
 
-    return position;
+    return state;
 }

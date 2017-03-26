@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import position from '../enum/position_enum';
+import Arquero from './positions/arquero';
 
 class PlayerSelection extends Component {
     render() {
         const { selectedPosition } = this.props;
         switch(selectedPosition) {
             case position.ARQUERO:
-                return <div>{'Seleccionó ARQUERO'}</div>;
+                return <Arquero />;
             case position.DEFENSA:
                 return <div>{'Seleccionó DEFENSA'}</div>;
             case position.MEDIO_CAMPO:

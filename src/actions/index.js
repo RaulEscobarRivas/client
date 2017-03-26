@@ -5,7 +5,8 @@ import {
     UNAUTH_USER,
     AUTH_ERROR,
     FETCH_MESSAGE,
-    POSITION_SELECTED
+    POSITION_SELECTED,
+    PLAYER_SELECTED
 } from './types';
 
 const API_URL = 'http://localhost:3090';
@@ -75,5 +76,14 @@ export function positionSelected(position) {
     return {
         type: POSITION_SELECTED,
         position
+    }
+}
+
+export function playerSelected(position, positionNumber, player) {
+    return {
+        type: PLAYER_SELECTED,
+        position,
+        positionNumber,
+        player
     }
 }

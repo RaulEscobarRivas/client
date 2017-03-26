@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import position from '../enum/position_enum';
 import Arquero from './positions/arquero';
+import * as selectors from '../reducers';
 
 class PlayerSelection extends Component {
     render() {
@@ -23,7 +24,7 @@ class PlayerSelection extends Component {
 }
 
 function mapStateToProps(state) {
-    return { selectedPosition: state.team.selectedPosition };
+    return { selectedPosition: selectors.getSelectedPosition(state) };
 }
 
 export default connect(mapStateToProps, actions)(PlayerSelection);
